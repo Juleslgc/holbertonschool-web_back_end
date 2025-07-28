@@ -1,7 +1,10 @@
 # Variable Annotations en Python
 
-Ce projet est un mini-cours et démonstration de l'utilisation des **annotations de type** (*variable annotations*) en Python.  
-Il montre comment rendre son code plus clair, maintenable, et vérifiable avec des outils comme `mypy`.
+Ce projet est un mini-cours et démonstration de
+l'utilisation des **annotations de type** (*variable
+annotations*) en Python.  
+Il montre comment rendre son code plus clair,
+maintenable, et vérifiable avec des outils comme `mypy`.
 
 ---
 
@@ -9,7 +12,9 @@ Il montre comment rendre son code plus clair, maintenable, et vérifiable avec d
 
 ### Qu’est-ce qu’une variable annotation ?
 
-En Python, les *variable annotations* permettent d’indiquer le **type d’une variable** sans changer son comportement à l'exécution.  
+En Python, les *variable annotations* permettent
+d’indiquer le **type d’une variable** sans changer son
+comportement à l'exécution.  
 Elles sont utiles pour :
 - documenter le code,
 - aider à la relecture et à l’autocomplétion dans les IDE,
@@ -60,7 +65,8 @@ mypy fichier.py
 Résultat :
 
 ```go
-error: Incompatible types in assignment (expression has type "int", variable has type "str")
+error: Incompatible types in assignment (expression has
+type "int", variable has type "str")
 ```
 
 ## À retenir
