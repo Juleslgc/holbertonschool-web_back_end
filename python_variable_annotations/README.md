@@ -81,4 +81,4 @@ type "int", variable has type "str")
 
 ## Auteur
 
-Projet réalisé par Jules.
+Projet d'école Holberton réalisé par Jules.
