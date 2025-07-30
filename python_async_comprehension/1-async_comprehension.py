@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-It contains an async function:
-async_comprehension()
+This module defines an asynchronous
+function that collects values from an async generator.
 """
 
 from typing import List
@@ -20,7 +20,4 @@ async def async_comprehension() -> List[float]:
     Return:
         A list of 10 random numbers
     """
-    result: List[float] = []
-    async for num in async_generator():
-        result.append(num)
-    return result
+    return [num async for num in async_generator()]

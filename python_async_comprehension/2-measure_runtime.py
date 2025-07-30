@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-It contains an async function:
-measure_runtime()
+This module defines a coroutine to
+measure the total runtime of async comprehensions.
 """
 
 import asyncio
@@ -21,13 +21,13 @@ async def measure_runtime() -> float:
     Return:
         The total runtime in a float number
     """
-    start = time.perf_counter()
+    start: float = time.perf_counter()
     await asyncio.gather(
         async_comprehension(),
         async_comprehension(),
         async_comprehension(),
         async_comprehension()
     )
-    end = time.perf_counter()
-    total_time = end - start
+    end: float = time.perf_counter()
+    total_time: float = end - start
     return total_time
