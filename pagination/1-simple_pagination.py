@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Module de pagination pour extraire des pages d'un fichier CSV de prénoms populaires.
-Contient une fonction `index_range` et une classe `Server` pour gérer les données.
+Pagination module to extract pages from a CSV file of popular first names.
+Contains an `index_range` function and a `Server` class to manage the data.
 """
 
 import csv

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """
-Simple pagination for a CSV dataset of popular first names.
+Pagination module to extract pages from a CSV file of popular first names.
+Contains an `index_range` function and a `Server` class to manage the data.
 """
 import csv
 import math
