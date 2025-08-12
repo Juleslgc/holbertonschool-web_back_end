@@ -41,6 +41,21 @@ class Server:
 
     def get_hyper_index(self, index: Optional[int] = None, page_size: int = 10
                         ) -> Dict[str, Any]:
+        """
+        Returns a data page with delete-resilient pagination.
+
+        Args:
+        index (Optional[int]): Starting position in the dataset (default is 0).
+        Can be None to start at the beginning.
+        page_size (int): Number of elements to include in the page (must be > 0).
+
+        Returns:
+        Dict[str, Any]: Dictionary containing:
+        - index (int): Starting index.
+        - data (List[Any]): The page data.
+        - page_size (int): Actual size of the returned page.
+        - next_index (int): Index to use for the next page.
+        """
         assert isinstance(index, int) or index is None
         assert isinstance(page_size, int) and page_size > 0
 
