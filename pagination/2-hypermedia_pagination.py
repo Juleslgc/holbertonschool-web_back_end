@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 Pagination module to extract pages from a CSV file of popular first names.
 Contains an `index_range` function and a `Server` class to manage the data.
