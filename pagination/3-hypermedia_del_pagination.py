@@ -47,7 +47,8 @@ class Server:
         Args:
         index (Optional[int]): Starting position in the dataset (default is 0).
         Can be None to start at the beginning.
-        page_size (int): Number of elements to include in the page (must be > 0).
+        page_size (int): Number of elements to include
+        in the page (must be > 0).
 
         Returns:
         Dict[str, Any]: Dictionary containing:
@@ -56,24 +57,24 @@ class Server:
         - page_size (int): Actual size of the returned page.
         - next_index (int): Index to use for the next page.
         """
-        assert isinstance(index, int) or index is None
         assert isinstance(page_size, int) and page_size > 0
 
         if index is None:
             index = 0
+        assert isinstance(index, int) or index >= 0
 
-        data_list: List[Any] = self.dataset()
+        data_list: Dict[int, List[Any]] = self.indexed_dataset()
         assert 0 <= index < len(data_list)
 
         data: List[Any] = []
         next_index: int = index
 
-        for i in range(index, len(data_list)):
-            if data_list[i] is not None:
+        for i in range(index, len(data_list) + page_size):
+            if i in data_list:
                 data.append(data_list[i])
-                if len(data) == page_size:
-                    next_index = i + 1
-                    break
+            next_index = i + 1
+            if len(data) == page_size:
+                break
         else:
             next_index = len(data_list)
 
