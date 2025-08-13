@@ -211,3 +211,7 @@ for doc in collection.find().sort("name", 1):
 for doc in collection.find().sort("name", -1).limit(2):
     print(doc)
 ```
+
+## Auteur
+
+Projet d'école Holberton réalisé par Jules.
