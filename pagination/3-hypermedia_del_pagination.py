@@ -61,7 +61,7 @@ class Server:
 
         if index is None:
             index = 0
-        assert isinstance(index, int) or index >= 0
+        assert isinstance(index, int) and index >= 0
 
         data_list: Dict[int, List[Any]] = self.indexed_dataset()
         assert 0 <= index < len(data_list)
@@ -69,10 +69,10 @@ class Server:
         data: List[Any] = []
         next_index: int = index
 
-        for i in range(index, len(data_list) + page_size):
+        for i in range(index, len(data_list)):
             if i in data_list:
                 data.append(data_list[i])
-            next_index = i + 1
+                next_index = i + 1
             if len(data) == page_size:
                 break
         else:
