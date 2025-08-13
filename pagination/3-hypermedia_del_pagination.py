@@ -74,11 +74,10 @@ class Server:
                 data.append(indexed_dataset[current])
             current += 1
 
-        # Skip deleted indices to find the next valid index
-        while current <= max_index and current not in indexed_dataset:
-            current += 1
-
-        next_index = current if current <= max_index else None
+        if current > max_index:
+            next_index = None
+        else:
+            next_index = current
 
         return {
             'index': index,
