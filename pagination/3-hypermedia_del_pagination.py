@@ -68,11 +68,13 @@ class Server:
 
         data: List[Any] = []
         next_index: int = index
+        nb_element = 0
 
         for i in range(index, len(data_list)):
             if i in data_list:
                 data.append(data_list[i])
-                next_index = i + 1
+                nb_element += 1
+            next_index = i + 1
             if len(data) == page_size:
                 break
         else:
