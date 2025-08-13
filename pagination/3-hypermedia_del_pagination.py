@@ -57,22 +57,28 @@ class Server:
         - page_size (int): Actual size of the returned page.
         - next_index (int): Index to use for the next page.
         """
-        assert type(index) is int and 0 <= index < len(self.dataset())
+        if index is None:
+            index = 0
 
-        index = 0 if index is None else index
-        dataset = self.indexed_dataset()
+        assert isinstance(index, int) and index >= 0
+        assert isinstance(page_size, int) and page_size > 0
 
-        assert index < len(dataset)
+        indexed_dataset = self.indexed_dataset()
+        max_index = max(indexed_dataset.keys())
+        assert index <= max_index
 
         data = []
-        nb_elements = 0
-        next_index = index
+        current = index
+        while len(data) < page_size and current <= max_index:
+            if current in indexed_dataset:
+                data.append(indexed_dataset[current])
+            current += 1
 
-        while next_index < len(dataset) and nb_elements < page_size:
-            if next_index in dataset:
-                data.append(dataset[next_index])
-                nb_elements += 1
-            next_index += 1
+        # Skip deleted indices to find the next valid index
+        while current <= max_index and current not in indexed_dataset:
+            current += 1
+
+        next_index = current if current <= max_index else None
 
         return {
             'index': index,
