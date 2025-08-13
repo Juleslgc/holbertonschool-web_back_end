@@ -115,6 +115,7 @@ collection.delete_many({"age": {"$lt": 25}})
 
 ## Commandes MongoDB Shell essentielles
 
+Pour l'ancien version sans le `One`
 ```bash
 show dbs                               # Voir bases de données
 use ma_base                            # Sélectionner/créer base
@@ -123,6 +124,90 @@ db.utilisateurs.insertOne({...})       # Ajouter un document
 db.utilisateurs.find()                  # Lister documents
 db.utilisateurs.find({age: {$gt: 25}})  # Filtrer
 db.utilisateurs.updateOne({...}, {...}) # Mettre à jour
+db.utilisateurs.updateMany({...}, {$set:{}...})
 db.utilisateurs.deleteOne({...})        # Supprimer
 db.utilisateurs.createIndex({nom: 1})   # Index sur "nom"
+db.utilisateurs.countDocument() or db.utilisateurs.count()  # Compte le nombre de fichier
+```
+
+## PyMongo – Commandes essentielles en Python
+
+### Insérer des documents
+
+```py
+# Un seul document
+collection.insert_one({"name": "Holberton school", "city": "SF"})
+
+# Plusieurs documents
+collection.insert_many([
+    {"name": "UCSF", "city": "SF"},
+    {"name": "Stanford", "city": "Palo Alto"}
+])
+```
+
+### Lire
+
+```py
+# Tous les documents
+for doc in collection.find():
+    print(doc)
+
+# Avec filtre
+for doc in collection.find({"city": "SF"}):
+    print(doc)
+
+# Un seul document
+doc = collection.find_one({"name": "UCSF"})
+print(doc)
+```
+
+### Compter les documents
+
+```py
+# Total
+collection.count_documents({})
+
+# Avec condition
+collection.count_documents({"city": "SF"})
+```
+
+### Mettre à jour
+
+```py
+# Un seul document
+collection.update_one(
+    {"name": "Holberton school"},
+    {"$set": {"address": "972 Mission street"}}
+)
+
+# Plusieurs documents
+collection.update_many(
+    {"city": "SF"},
+    {"$set": {"country": "USA"}}
+)
+```
+
+### Supprimer
+
+```py
+# Un document
+collection.delete_one({"name": "Stanford"})
+
+# Plusieurs documents
+collection.delete_many({"city": "SF"})
+
+# Tous les documents
+collection.delete_many({})
+```
+
+### Trier et limiter
+
+```py
+# Trier ascendant
+for doc in collection.find().sort("name", 1):
+    print(doc)
+
+# Trier descendant + limiter
+for doc in collection.find().sort("name", -1).limit(2):
+    print(doc)
 ```
