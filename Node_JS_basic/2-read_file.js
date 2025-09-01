@@ -20,11 +20,13 @@ function countStudents(database) {
 
     const csStudents = students.filter((student) => student.field === 'CS');
     const csName = csStudents.map((student) => student.firstname);
-    process.stdout.write(`Number of students in CS: ${csStudents.length}. List: ${csName.join(', ')}\n`);
+    const csfield = csStudents.length > 0 ? csStudents[0].field : 'CS';
+    process.stdout.write(`Number of students in ${csfield}: ${csStudents.length}. List: ${csName.join(', ')}\n`);
 
     const sweStudents = students.filter((student) => student.field === 'SWE');
     const sweName = sweStudents.map((student) => student.firstname);
-    process.stdout.write(`Number of students in SWE: ${sweStudents.length}. List: ${sweName.join(', ')}\n`);
+    const swefield = sweStudents.length > 0 ? sweStudents[0].field : 'SWE';
+    process.stdout.write(`Number of students in ${swefield}: ${sweStudents.length}. List: ${sweName.join(', ')}\n`);
   }
 }
 module.exports = countStudents;
