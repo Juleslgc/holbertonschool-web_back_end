@@ -2,7 +2,7 @@ const fs = require('fs');
 
 async function countStudents(database) {
   try {
-    const data = await fs.readFileSync(database, 'utf8');
+    const data = await fs.promises.readFile(database, 'utf8');
     const lines = data.trim().split('\n');
     const headers = lines[0].split(',');
     const students = [];
