@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const http = require('http');
 
 const host = 'localhost';
@@ -6,7 +6,7 @@ const port = '1245';
 
 async function countStudents(database) {
   try {
-    const data = await fs.promises.readFile(database, 'utf8');
+    const data = await fs.readFile(database, 'utf8');
     const lines = data.trim().split('\n');
     const headers = lines[0].split(',');
     const students = [];
@@ -27,7 +27,7 @@ async function countStudents(database) {
 
     const sweStudents = students.filter((student) => student.field === 'SWE');
     const sweName = sweStudents.map((student) => student.firstname);
-    out += `Number of students in SWE: ${sweStudents.length}. List: ${sweName.join(', ')}\n`;
+    out += `Number of students in SWE: ${sweStudents.length}. List: ${sweName.join(', ')}`;
 
     return out;
   } catch (err) {
