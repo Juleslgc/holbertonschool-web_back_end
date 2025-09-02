@@ -1,8 +1,8 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 
 async function countStudents(database) {
   try {
-    const data = await fs.promises.readFile(database, 'utf8');
+    const data = await fs.readFile(database, 'utf8');
     const lines = data.trim().split('\n');
     const headers = lines[0].split(',');
     const students = [];
