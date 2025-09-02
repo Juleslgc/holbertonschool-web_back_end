@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
   res.status(200).send('Hello Holberton School!');
 });
 
-app.get('/students', async (req, res) => {
+app.get('/students', async (_, res) => {
   try {
     res.set('Content-Type', 'text/plain');
     const result = await countStudents('database.csv');
