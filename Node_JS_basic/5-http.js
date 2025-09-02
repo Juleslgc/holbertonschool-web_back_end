@@ -58,3 +58,4 @@ const app = http.createServer(async (req, res) => {
 app.listen(port, host, () => {
   console.log(`Server running at http://${host}:${port}`);
 });
+module.exports = app;
