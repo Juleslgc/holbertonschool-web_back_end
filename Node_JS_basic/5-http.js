@@ -23,13 +23,11 @@ async function countStudents(database) {
 
     const csStudents = students.filter((student) => student.field === 'CS');
     const csName = csStudents.map((student) => student.firstname);
-    const csfield = csStudents.length > 0 ? csStudents[0].field : 'CS';
-    out += `Number of students in ${csfield}: ${csStudents.length}. List: ${csName.join(', ')}\n`;
+    out += `Number of students in CS: ${csStudents.length}. List: ${csName.join(', ')}\n`;
 
     const sweStudents = students.filter((student) => student.field === 'SWE');
     const sweName = sweStudents.map((student) => student.firstname);
-    const swefield = sweStudents.length > 0 ? sweStudents[0].field : 'SWE';
-    out += `Number of students in ${swefield}: ${sweStudents.length}. List: ${sweName.join(', ')}\n`;
+    out += `Number of students in SWE: ${sweStudents.length}. List: ${sweName.join(', ')}\n`;
 
     return out;
   } catch (err) {
