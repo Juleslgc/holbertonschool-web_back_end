@@ -36,11 +36,13 @@ async function countStudents(database) {
 }
 
 app.get('/', (req, res) => {
+  res.set('Content-Type', 'text/plain');
   res.status(200).send('Hello Holberton School!');
 });
 
 app.get('/students', async (req, res) => {
   try {
+    res.set('Content-Type', 'text/plain');
     const result = await countStudents('database.csv');
     res.status(200).send(`This is the list of our students\n${result}`);
   } catch (err) {
@@ -50,6 +52,7 @@ app.get('/students', async (req, res) => {
 });
 
 app.use((req, res) => {
+  res.set('Content-Type', 'text/plain');
   res.status(404).send('Not Found');
 });
 
