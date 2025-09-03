@@ -46,9 +46,7 @@ const app = http.createServer(async (req, res) => {
       const result = await countStudents('database.csv');
       res.end(`${result}`);
     } catch (err) {
-      console.error(err);
-      res.statusCode = 500;
-      res.end('Cannot load the database');
+      res.end(err.message);
     }
   } else {
     res.statusCode = 404;

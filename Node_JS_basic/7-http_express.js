@@ -35,28 +35,28 @@ async function countStudents(database) {
   }
 }
 
-app.get('/', (req, res) => {
-  res.set('Content-Type', 'text/plain');
+app.get('/', (_, res) => {
+  res.setHeader('Content-Type', 'text/plain');
   res.status(200).send('Hello Holberton School!');
 });
 
 app.get('/students', async (_, res) => {
+  const response = 'This is the list of our students\n';
   try {
-    res.set('Content-Type', 'text/plain');
+    res.setHeader('Content-Type', 'text/plain');
     const result = await countStudents('database.csv');
-    res.status(200).send(`This is the list of our students\n${result}`);
+    res.status(200).send(`${response}${result}`);
   } catch (err) {
-    console.error(err);
-    res.status(500).send('Cannot load the database');
+    res.send(response + err.message);
   }
 });
 
-app.use((req, res) => {
-  res.set('Content-Type', 'text/plain');
+app.use((_, res) => {
+  res.setHeader('Content-Type', 'text/plain');
   res.status(404).send('Not Found');
 });
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`Server running at http://127.0.0.1:${port}`);
 });
 module.exports = app;
