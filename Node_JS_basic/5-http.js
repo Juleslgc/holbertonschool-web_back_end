@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const http = require('http');
 
-const host = 'localhost';
+const host = '127.0.0.1';
 const port = '1245';
 
 async function countStudents(database) {
@@ -37,13 +37,14 @@ async function countStudents(database) {
 
 const app = http.createServer(async (req, res) => {
   res.statusCode = 200;
-  res.setHeader('Conetent-Type', 'text/plain');
+  res.setHeader('Content-Type', 'text/plain');
   if (req.url === '/') {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     try {
+      res.write('This is the list of our students\n');
       const result = await countStudents('database.csv');
-      res.end(`This is the list of our students\n${result}`);
+      res.end(`${result}`);
     } catch (err) {
       console.error(err);
       res.statusCode = 500;
