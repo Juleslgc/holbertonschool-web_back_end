@@ -1,4 +1,6 @@
+// eslint-disable-next-line
 import express from 'express';
+// eslint-disable-next-line
 import router from './routes/index.js';
 
 const app = express();
